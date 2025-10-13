@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery Script Tasks</title>
+    <link rel="stylesheet" href="style_1.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body{font-family: Arial,sans-serif;
+            margin: 20px;}
+        p,ul,div{margin: 10px 0;
+        padding: 10px;}
+        p,ul li{color: #333;}
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h2>Append content</h2>
+    <p id="para">This is an existing paragraph.</p>
+    <ul id="list">
+        <li>Item 1</li>
+        <li>Item 2</li>
+    </ul>
+    <button id="appendBtn">Append content</button>
+    <h2>Animate Element</h2>
+    <div class="box" id="animateBox"></div>
+    <button id="animateBtn">Animate Box</button>
+    <div class="box" id="animateBox_2"></div>
+    <button id="animateBtn_2">Animate Box</button>
+    <script>
+        $(document).ready(function(){
+            let itemCount=$('#list li').length;
+        $('#appendBtn').click(()=>{
+            itemCount++;
+        $('#para').append(`Appended text ${itemCount}.`);
+        $('#list').append(`<li style="color:${apply()}; font-family:${fonts_1()};">Item ${itemCount}</li>`);
+        });
+        });
+        $('#animateBtn').click(()=>{
+            $('#animateBox').css({width:'100px',height:'100px','background-color':'#f4f4f4'})
+            .animate({width:'150px',height:'150px'},500,function(){
+                $(this).css('background-color','lightblue');
+            });
+        });
+        $('#animateBtn_2').click(()=>{
+            $('#animateBox_2').css({width:'100px',height:'100px','background-color':'#f4f4f4'})
+            .animate({width:'150px',height:'150px'},500,function(){
+                $(this).css('background-color','green');
+            });
+        });
+        function apply(){
+            const hexCharacters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += hexCharacters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+        function fonts_1(){
+            const fonts = [
+                "Arial, sans-serif",
+                "Verdana, sans-serif",
+                "Courier New, monospace",
+                "Georgia, serif",
+                "fantasy",
+                "cursive"
+            ];
+            const randomIndex = Math.floor(Math.random() * fonts.length);
+            return fonts[randomIndex];
+        }
+    </script>
+</body>
+</html>
